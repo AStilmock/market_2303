@@ -6,7 +6,19 @@ class Market
     @vendors = []
   end
 
-  # def vendors
+  def add_vendors(vendor)
+    @vendors << vendor
+  end
 
-  # end
+  def vendor_names
+    @vendors.flat_map do |vendor|
+      vendor.name
+    end
+  end
+
+  def vendors_that_sell(item)
+    @vendors.find_all do |vendor|
+      vendor.inventory.include?(item)
+    end
+  end
 end

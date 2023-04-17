@@ -22,4 +22,10 @@ class Vendor
       @inventory[item] = (amount + quantity)
     end
   end
+
+  def potential_revenue
+    @inventory[item].map do |inv|
+      inv * @inventory[price]
+    end
+  end
 end
