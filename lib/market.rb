@@ -6,7 +6,7 @@ class Market
     @vendors = []
   end
 
-  def vendors
-    
-  end
+  # def vendors
+
+  # end
 end

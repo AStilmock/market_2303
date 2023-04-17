@@ -18,6 +18,11 @@ RSpec.describe Market do
     it 'exists' do
       expect(@vendor).to be_a(Vendor)
     end
+
+    it 'has vendor attributes' do
+      expect(@market.name).to eq("South Pearl Street Farmers Market")
+      expect(@market.vendors).to eq([])
+    end
   end
 
 end
