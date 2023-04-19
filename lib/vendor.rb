@@ -3,29 +3,20 @@ class Vendor
   attr_reader :name, :inventory
   def initialize(name)
     @name      = name
-    @inventory = {}
+    @inventory = Hash.new(0)
   end
 
   def check_stock(item)
-    if @inventory[item] == nil
-      return 0
-    else
-      @inventory[item]
-    end
+    @inventory[item]
   end
 
   def stock(item, quantity)
-    if @inventory[item] == nil
-      @inventory[item] = quantity
-    else
-      amount = @inventory[item]
-      @inventory[item] = (amount + quantity)
-    end
+    @inventory[item] += quantity
   end
 
   def potential_revenue
-    @inventory[item].map do |inv|
-      inv * @inventory[price]
+    @inventory.sum do |item, amount|
+      item.price * amount
     end
   end
 end

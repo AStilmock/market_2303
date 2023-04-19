@@ -18,7 +18,25 @@ class Market
 
   def vendors_that_sell(item)
     @vendors.find_all do |vendor|
-      vendor.inventory.include?(item)
+      vendor.inventory[item] != 0
     end
   end
+
+  def sorted_items_list
+    @vendors.flat_map do |vendor|
+      vendor.inventory.keys.map do |item|
+        item.name
+      end
+    end.uniq.sort
+  end
+
+  def total_inventory
+    total = {}
+    @vendors.each do |vendor|
+      vendor.inventory.each do |item, quantity|
+        total[item] = Hash.new(0)
+        total[item][:quantity] += quantity
+        total[item][:vendors] = [vendor]
+  end
+
 end
